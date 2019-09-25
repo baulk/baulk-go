@@ -8,5 +8,5 @@ var (
 
 // -E command
 func main() {
-
+	//command.Exec(os.Args)
 }
