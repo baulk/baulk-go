@@ -55,3 +55,9 @@ func calculationFileHash(subcmd, path string) int {
 	fmt.Printf("%s %s\n", hx, filepath.Base(path))
 	return 0
 }
+
+// HashCalculate impl hash fun
+func HashCalculate(args []string) int {
+
+	return 0
+}
