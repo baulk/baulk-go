@@ -18,6 +18,12 @@ func IsZstd(b []byte) bool {
 		b[0] == 0x28 && b[1] == 0xb5 && b[2] == 0x2f && b[3] == 0xfd
 }
 
+// IsBrotli todo
+func IsBrotli(b []byte) bool {
+	// see https://github.com/google/brotli/issues/727
+	return false
+}
+
 // IsZip buffer is zip
 func IsZip(b []byte) bool {
 	return len(b) > 3 &&
