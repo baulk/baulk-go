@@ -61,6 +61,14 @@ func Is7Z(b []byte) bool {
 		b[3] == 0xAF && b[4] == 0x27 && b[5] == 0x1C
 }
 
+// IsXz todo
+func IsXz(b []byte) bool {
+	return len(b) > 5 &&
+		b[0] == 0xFD && b[1] == 0x37 &&
+		b[2] == 0x7A && b[3] == 0x58 &&
+		b[4] == 0x5A && b[5] == 0x00
+}
+
 type thinExecutor struct {
 	file *os.File
 	w    io.WriteCloser /// write
