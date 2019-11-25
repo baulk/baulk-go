@@ -20,7 +20,7 @@ var (
 
 // ArgvContainer todo
 type ArgvContainer interface {
-	Invoke(ch int, val, raw string) error
+	Invoke(val int, oa, raw string) error
 }
 
 type option struct {
@@ -79,7 +79,7 @@ func (ae *ArgvEngine) parseInternalLong(a string, argv []string, ac ArgvContaine
 		oa = argv[ae.index+1]
 		ae.index++
 	}
-	if err := ac.Invoke(ha, oa, a); err != nil {
+	if err := ac.Invoke(ch, oa, a); err != nil {
 		return err
 	}
 	return nil
@@ -120,7 +120,7 @@ func (ae *ArgvEngine) parseInternalShort(a string, argv []string, ac ArgvContain
 		oa = argv[ae.index+1]
 		ae.index++
 	}
-	if err := ac.Invoke(ha, oa, a); err != nil {
+	if err := ac.Invoke(ch, oa, a); err != nil {
 		return err
 	}
 	return nil
