@@ -17,6 +17,26 @@ import (
 
 // baulk command module hash command
 
+type hashOptions struct {
+	sub     string
+	path    string
+	verbose bool
+}
+
+func (ho *hashOptions) Invoke(val int, oa, raw string) error {
+	switch val {
+	case 'v':
+	case 'h':
+	case 'V':
+		ho.verbose = true
+	case 'f':
+		ho.path = oa
+	case 'c':
+		ho.sub = oa
+	}
+	return nil
+}
+
 func calculationFileHash(subcmd, path string) int {
 	file, err := os.Open(path)
 	if err != nil {
@@ -58,6 +78,26 @@ func calculationFileHash(subcmd, path string) int {
 
 // HashCalculate impl hash fun
 func HashCalculate(args []string) int {
-
-	return 0
+	var ae ArgvEngine
+	ae.Add("version", NOARG, 'v')
+	ae.Add("help", NOARG, 'h')
+	ae.Add("cmd", REQUIRED, 'c')
+	var ho hashOptions
+	if err := ae.Execute(args, &ho); err != nil {
+		fmt.Fprintf(os.Stderr, "ParseArgv: \x1b[31m%s\x1b[0m\n", err.Error())
+		os.Exit(1)
+	}
+	ua := ae.Unresolved()
+	if ho.sub == "" && len(ua) > 0 {
+		ho.sub = ua[0]
+		ua = ua[1:]
+	}
+	if ho.path == "" && len(ua) > 0 {
+		ho.path = ua[0]
+	}
+	if ho.sub == "" || ho.path == "" {
+		fmt.Fprintf(os.Stderr, "unknown hash subcommand: [%v]\n", ae.Unresolved())
+		os.Exit(1)
+	}
+	return calculationFileHash(ho.sub, ho.path)
 }
