@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/baulk/baulk/command"
+	"github.com/baulk/baulk-go/command"
 )
 
 var (

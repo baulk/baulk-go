@@ -2,4 +2,7 @@ module github.com/baulk/baulk-go
 
 go 1.13
 
-require golang.org/x/crypto v0.0.0-20190923035154-9ee001bba392
+require (
+	golang.org/x/crypto v0.0.0-20200302210943-78000ba7a073
+	golang.org/x/sys v0.0.0-20200302150141-5c8b2ff67527 // indirect
+)
