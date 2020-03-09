@@ -1,4 +1,4 @@
-module github.com/baulk/baulk
+module github.com/baulk/baulk-go
 
 go 1.13
 
